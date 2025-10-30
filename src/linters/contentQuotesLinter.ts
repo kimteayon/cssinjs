@@ -12,7 +12,7 @@ const linter: Linter = (key, value, info) => {
       (contentValues.indexOf(value) === -1 &&
         !contentValuePattern.test(value) &&
         (value.charAt(0) !== value.charAt(value.length - 1) ||
-          (value.charAt(0) !== '"' && value.charAt(0) !== "'")))
+          (value.charAt(0) !== '"' && value.charAt(0) !== "'" && !/^var\(--[a-zA-Z0-9_-]+\)$/.test(`${value}`))))
     ) {
       lintWarning(
         `You seem to be using a value for 'content' without quotes, try replacing it with \`content: '"${value}"'\`.`,
